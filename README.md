@@ -32,8 +32,11 @@
 
 6.	Compile the lex program with lex compiler to produce output file as lex.yy.c. eg $ lex filename.l $ cc lex.yy.c
 7.	Compile that file with C compiler and verify the output.
-
-# PROGRAM:
+# PROGRAM
+```
+Developed by: Abishek Xavier
+Register no: 212223230004
+```
 ```
 #include <stdio.h>
 #include <ctype.h>
@@ -41,8 +44,7 @@
 
 int isKeyword(char buffer[]) {
     char keywords[5][10] = {"if", "else", "while", "for", "int"};
-    for (int i = 0; i < 5; ++i) 
-    {
+    for (int i = 0; i < 5; ++i) {
         if (strcmp(buffer, keywords[i]) == 0) {
             return 1;
         }
@@ -80,8 +82,11 @@ int main() {
 }
 
 ```
-# OUTPUT:
-![Screenshot 2024-10-08 142942](https://github.com/user-attachments/assets/36165cca-2783-4034-aac0-08697e165547)
+# OUTPUT
+
+![Screenshot 2024-09-26 142243](https://github.com/user-attachments/assets/840d958b-7929-4e08-8734-4b1178df8d40)
+
 
 # RESULT
 ## The lexical analyzer is implemented using lex and the output is verified.
+
