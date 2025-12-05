@@ -1,8 +1,9 @@
 # Ex-2-GENERATION OF LEXICAL TOKENS LEX FLEX TOOL
+# Date: 27.09.2025
 # AIM
-## To write a lex program to implement lexical analyzer to recognize a few patterns.
-# NAME:Dinesh M
-# REG NO:2305001007
+
+ To write a lex program to implement lexical analyzer to recognize a few patterns.
+ 
 # ALGORITHM
 
 1.	Start the program.
@@ -32,61 +33,46 @@
 
 6.	Compile the lex program with lex compiler to produce output file as lex.yy.c. eg $ lex filename.l $ cc lex.yy.c
 7.	Compile that file with C compiler and verify the output.
-# PROGRAM
+
+# INPUT
 ```
-Developed by: Abishek Xavier
-Register no: 212223230004
-```
-```
+%{
 #include <stdio.h>
 #include <ctype.h>
-#include <string.h>
+%}
 
-int isKeyword(char buffer[]) {
-    char keywords[5][10] = {"if", "else", "while", "for", "int"};
-    for (int i = 0; i < 5; ++i) {
-        if (strcmp(buffer, keywords[i]) == 0) {
-            return 1;
-        }
-    }
+%%
+
+"if"        { printf("Keyword: %s\n", yytext); }
+"else"      { printf("Keyword: %s\n", yytext); }
+"while"     { printf("Keyword: %s\n", yytext); }
+"for"       { printf("Keyword: %s\n", yytext); }
+
+[0-9]+      { printf("Number: %s\n", yytext); }
+[a-zA-Z_][a-zA-Z0-9_]*   { printf("Identifier: %s\n", yytext); }
+
+"=="|"="    { printf("Operator: %s\n", yytext); }
+"+"|"-"|"*"|"/" { printf("Operator: %s\n", yytext); }
+
+[ \t\n]     ;   // Ignore whitespace
+.           { printf("Unknown: %s\n", yytext); }
+
+%%
+
+int main(int argc, char **argv) {
+    yylex();
     return 0;
 }
 
-int main() {
-    char ch, buffer[15];
-    char operators[] = "+-*/=";
-    int i = 0;
-
-    printf("Enter your input: ");
-    
-    while ((ch = getchar()) != EOF) {
-        if (strchr(operators, ch)) {
-            printf("Operator: %c\n", ch);
-        } else if (isalnum(ch)) {
-            buffer[i++] = ch;
-        } else if ((ch == ' ' || ch == '\n' || ch == '\t') && i != 0) {
-            buffer[i] = '\0';
-
-            if (isKeyword(buffer)) {
-                printf("Keyword: %s\n", buffer);
-            } else if (isdigit(buffer[0])) {
-                printf("Number: %s\n", buffer);
-            } else {
-                printf("Identifier: %s\n", buffer);
-            }
-            i = 0;
-        }
-    }
-
-    return 0;
+int yywrap() {
+    return 1;
 }
-
 ```
+
 # OUTPUT
 
-![Screenshot 2024-09-26 142243](https://github.com/user-attachments/assets/840d958b-7929-4e08-8734-4b1178df8d40)
-
+![WhatsApp Image 2025-09-20 at 15 50 04_be0591e2](https://github.com/user-attachments/assets/c29abd77-521a-4bd6-9703-45b810ed1c4f)
 
 # RESULT
-## The lexical analyzer is implemented using lex and the output is verified.
 
+The lexical analyzer is implemented using lex and the output is verified.
